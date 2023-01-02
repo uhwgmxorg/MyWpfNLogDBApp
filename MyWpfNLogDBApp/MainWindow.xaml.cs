@@ -1,8 +1,11 @@
-﻿using System;
+﻿using NLog;
+using NLog.Layouts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using System.Xml.Linq;
 
 namespace MyWpfNLogDBApp
 {
@@ -172,8 +175,9 @@ namespace MyWpfNLogDBApp
         /// <param name="e"></param>
         private void Button_1_Click(object sender, RoutedEventArgs e)
         {
-            Message = "You pressed Button #1 Beep()";
-            _logger.Info(Message);
+            Message = "You pressed Button #1 Beep() and passing a AppUser";
+            string user = "User XYZ";
+            _logger.WithProperty("AppUser", user).Info(Message);
             System.Console.Beep();
         }
 
